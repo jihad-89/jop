@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Company;
+use App\Models\Category;
+use App\Models\Vacancy;
 
 use Illuminate\Http\Request;
 
@@ -8,7 +11,9 @@ class ClientController extends Controller
 {
     //
     public function home(){
-        return view('client.home');
+        $companies = Company::get();
+        $category= Category::get();
+        return view('client.home')->with("companies" ,$companies)->with("category" ,$category);
     }
 
     public function advance(){
@@ -27,16 +32,19 @@ class ClientController extends Controller
         return view('client.jobbytitle');
     }
 
-    public function jobbycategory(){
-        return view('client.jobbycategory');
+    public function jobbycategory($name){
+        $vacancies =Vacancy::where("category", $name)->get();
+        return view('client.jobbycategory')->with("vacancies" , $vacancies)->with("name" , $name);
     }
 
     public function companies(){
-        return view('client.companies');
+        $companies = Company::get();
+        return view('client.companies')->with("companies" , $companies);
     }
 
     public function hiring(){
-        return view('client.hiring');
+        $vacancies = Vacancy::get();
+        return view('client.hiring')->with("vacancies" ,$vacancies);
     }
 
     public function aboutus(){
@@ -53,13 +61,15 @@ class ClientController extends Controller
 
 
     
-    public function hiringcompany(){
-        return view('client.hiringcompany');
+    public function hiringcompany($name){
+        $vacancies = Vacancy::where("companyname" , $name)->get();
+        return view('client.hiringcompany')->with("vacancies", $vacancies)->with("name", $name);
     }
 
     
     public function hiringdetails(){
-        return view('client.jobdetail');
+        $vacancies = Vacancy::get();
+        return view('client.jobdetail')->with("vacancies" ,$vacancies);
     }
     
     public function register(){

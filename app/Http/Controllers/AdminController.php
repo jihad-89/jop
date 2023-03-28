@@ -190,7 +190,7 @@ class AdminController extends Controller
     public function editvacancy($id){
         $vacancy=  Vacancy::find($id);
          $companies = Company::where("name", "!=" , $vacancy->companyname)->get();
-         $categories = Category::where("category",  $vacancy->category)->get();
+         $categories = Category::where("category", $vacancy->category)->get();
 
         return view("admin.editvacancy")->with("companies",$companies)->with("categories" , $categories)->with("vacancy", $vacancy);
     }

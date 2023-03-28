@@ -26,7 +26,7 @@ Edit vacancy
                                           {{Session::get('status')}}
                                         </div>
                                         @endif
-                                        <form class="form-horizontal span6" action="{{url('admin/updatevacancy')}}" method="POST">
+                                        <form class="form-horizontal span6" action="{{url('/admin/updatevacancy')}}" method="POST">
                                             @csrf
                                            
                                             <div class="row">
@@ -43,7 +43,7 @@ Edit vacancy
                                                     <div class="col-md-8">
                                                         <select class="form-control input-sm" id="COMPANYID" 
                                                         name="companyname" required>
-                                                            <option value="">{{$vacancy->companyname}}</option>
+                                                            <option value="{{$vacancy->companyname}}">{{$vacancy->companyname}}</option>
                                                             @foreach ($companies as $company)
                                                             <option value="{{$company->name}}">{{$company->name}}</option> 
                                                             @endforeach

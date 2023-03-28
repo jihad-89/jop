@@ -26,24 +26,17 @@ différent offre d'emplois
                 <th>Date Posted</th>
             </thead>
             <tbody>
-                                    <tr>
-                        <td><a href="{{url('hiringdetails')}}">Developer</a></td>
-                        <td>URC</td>
-                        <td>Bry Camugao</td>
-                        <td>2022-07-26 02:15:02</td>
-                    </tr>  
-                                    <tr>
-                        <td><a href="/jobdetails/3">IT Manager</a></td>
-                        <td>Quest</td>
-                        <td>Kabankalan City</td>
-                        <td>2022-07-27 01:22:00</td>
-                    </tr>  
-                                    <tr>
-                        <td><a href="/jobdetails/4">Digital Marketer</a></td>
-                        <td>Copreros</td>
-                        <td>Mabinay&#039;s</td>
-                        <td>2022-07-27 01:23:11</td>
-                    </tr>  
+                @foreach ($vacancies as $vacancy)
+                <tr>
+                    <td><a href="hiringdetails/{{$vacancy->id}}">{{$vacancy->occuptitle}}</a></td>
+                    <td>{{$vacancy->companyname}}</td>
+                    <td>{{$vacancy->adress}}</td>
+                    <td>{{$vacancy->created_at}}</td>
+                </tr>
+                @endforeach
+                 
+                      
+                                    
                 
             </tbody>
         </table>   
